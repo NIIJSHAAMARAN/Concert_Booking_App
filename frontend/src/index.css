@@ -1,0 +1,108 @@
+/* ── Reset ──────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Design tokens ──────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg:          #09090e;
+  --bg2:         #111118;
+  --surface:     #13131a;
+  --surface2:    #1c1c27;
+
+  /* Borders */
+  --border:      rgba(255, 255, 255, 0.07);
+  --border2:     rgba(255, 255, 255, 0.13);
+
+  /* Text */
+  --text:        #ededf2;
+  --text2:       #9191a8;
+  --text3:       #55556a;
+
+  /* Accent — lime yellow */
+  --accent:      #e8ff5a;
+  --accent-dim:  rgba(232, 255, 90, 0.10);
+
+  /* Status colours */
+  --red:         #ff5959;
+  --red-dim:     rgba(255, 89, 89, 0.12);
+  --green:       #3ddc84;
+  --green-dim:   rgba(61, 220, 132, 0.12);
+  --blue:        #5b9fff;
+  --blue-dim:    rgba(91, 159, 255, 0.12);
+  --orange:      #ff9640;
+
+  /* Border radii */
+  --r:           8px;
+  --r-lg:        12px;
+  --r-xl:        16px;
+
+  /* Transition shorthand */
+  --t:           all 0.18s ease;
+
+  /* Typography */
+  --font-body:    'DM Sans', system-ui, -apple-system, sans-serif;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+}
+
+/* ── Base ───────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:               var(--bg);
+  color:                    var(--text);
+  font-family:              var(--font-body);
+  font-size:                14px;
+  line-height:              1.6;
+  min-height:               100vh;
+  -webkit-font-smoothing:   antialiased;
+  -moz-osx-font-smoothing:  grayscale;
+}
+
+a {
+  text-decoration: none;
+  color:           inherit;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  outline:     none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text3);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+
+/* ── Animations ─────────────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes shimmer {
+  0%, 100% { opacity: 1;  }
+  50%       { opacity: 0.4; }
+}
