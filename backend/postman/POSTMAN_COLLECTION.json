@@ -1,0 +1,344 @@
+{
+  "info": {
+    "name": "Concert Booking API",
+    "description": "Complete API for concert booking application",
+    "version": "1.0.0"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Doe\",\n  \"email\": \"john@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"admin@concertapp.com\",\n  \"password\": \"admin1234\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        },
+        {
+          "name": "Get Current User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/me",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "me"]
+            }
+          }
+        },
+        {
+          "name": "Create Admin",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Admin User\",\n  \"email\": \"admin@concertapp.com\",\n  \"password\": \"admin1234\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/create-admin",
+              "host": ["{{base_url}}"],
+              "path": ["api", "auth", "create-admin"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Concerts",
+      "item": [
+        {
+          "name": "Get All Concerts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/concerts?page=1&limit=9&genre=Rock&available=true&search=&sortBy=dateTime&order=asc",
+              "host": ["{{base_url}}"],
+              "path": ["api", "concerts"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "9"
+                },
+                {
+                  "key": "genre",
+                  "value": "Rock"
+                },
+                {
+                  "key": "available",
+                  "value": "true"
+                },
+                {
+                  "key": "search",
+                  "value": ""
+                },
+                {
+                  "key": "sortBy",
+                  "value": "dateTime"
+                },
+                {
+                  "key": "order",
+                  "value": "asc"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Concert",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{base_url}}/api/concerts/{{concert_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "concerts", "{{concert_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Create Concert",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Rock Night 2025\",\n  \"artist\": \"The Rolling Stones\",\n  \"description\": \"Epic rock concert\",\n  \"dateTime\": \"2025-05-15T19:00:00Z\",\n  \"venue\": {\n    \"name\": \"Madison Square Garden\",\n    \"address\": \"33 W 33rd St\",\n    \"city\": \"New York\"\n  },\n  \"ticketPrice\": 150,\n  \"totalTickets\": 5000,\n  \"genre\": \"Rock\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/concerts",
+              "host": ["{{base_url}}"],
+              "path": ["api", "concerts"]
+            }
+          }
+        },
+        {
+          "name": "Update Concert",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Updated Concert Name\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/concerts/{{concert_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "concerts", "{{concert_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Delete Concert",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/concerts/{{concert_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "concerts", "{{concert_id}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"concertId\": \"{{concert_id}}\",\n  \"ticketsBooked\": 2\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/bookings",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings"]
+            }
+          }
+        },
+        {
+          "name": "Get My Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/my-bookings?page=1&limit=9&status=confirmed",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "my-bookings"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "9"
+                },
+                {
+                  "key": "status",
+                  "value": "confirmed"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Single Booking",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/{{booking_id}}",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "{{booking_id}}"]
+            }
+          }
+        },
+        {
+          "name": "Cancel Booking",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings/{{booking_id}}/cancel",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings", "{{booking_id}}", "cancel"]
+            }
+          }
+        },
+        {
+          "name": "Get All Bookings (Admin)",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/bookings?page=1&limit=12&status=confirmed",
+              "host": ["{{base_url}}"],
+              "path": ["api", "bookings"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "12"
+                },
+                {
+                  "key": "status",
+                  "value": "confirmed"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
